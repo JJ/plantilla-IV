@@ -1,4 +1,4 @@
-# Repositorio de clase de Infraestructura Virtual de la [ETSIIT](https://etsiit.ugr.es)
+# Repositorio de clase de Infraestructura Virtual de la [ETSIIT-UGR](https://etsiit.ugr.es)
 
 Repositorio para el material específico de cada clase, planificación y ejercicios.
 
