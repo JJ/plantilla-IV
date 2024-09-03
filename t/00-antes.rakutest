@@ -1,8 +1,7 @@
 #!/usr/bin/env raku
 
 use Test;
-use IV::Stats;
-use IV::Stats::Fechas;
+use IV::Stats::Utils;
 
 my @student-list = lista-estudiantes();
 my $contenido = (PROYECTOS ~ "objetivo-0.md").IO.slurp;

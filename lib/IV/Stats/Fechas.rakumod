@@ -1,6 +1,7 @@
 use IO::Glob;
 use Git::File::History;
 use IV::Stats;
+use IV::Stats::Utils;
 
 unit class IV::Stats::Fechas;
 

@@ -16,7 +16,8 @@
   ],
   "provides": {
     "IV::Stats": "lib/IV/Stats.rakumod",
-    "IV::Stats::Fechas": "lib/IV/Stats/Fechas.rakumod"
+    "IV::Stats::Fechas": "lib/IV/Stats/Fechas.rakumod",
+    "IV::Stats::Utils": "lib/IV/Stats/Utils.rakumod"
   },
   "resources": [],
   "license": "Artistic-2.0",
