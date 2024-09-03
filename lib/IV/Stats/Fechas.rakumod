@@ -7,6 +7,7 @@ enum Estados is export <CUMPLIDO ENVIADO INCOMPLETO NINGUNO>;
 sub estado-objetivos( @student-list, $contenido, $objetivo ) is export {
     my @contenido = $contenido.split("\n").grep(/"|"/)[2..*];
     my %estados;
+    my %ultimas-versiones;
     my %asignaciones = asignaciones-objetivo2();
     for @contenido -> $linea {
         my $usuario;
@@ -24,8 +25,12 @@ sub estado-objetivos( @student-list, $contenido, $objetivo ) is export {
         } elsif  $marca ~~ /"github.com"/  {
             %estados{$usuario} = ENVIADO
         }
+        $linea ~~ / v $<version> = (\d+\.\d+\.\d+)/;
+        %ultimas-versiones{$usuario} = ~$<version>;
+        say %ultimas-versiones;
     }
-    return %estados;
+    say %ultimas-versiones;
+    return [%estados, %ultimas-versiones];
 }
 
 unit class IV::Stats::Fechas;
@@ -44,7 +49,8 @@ method new() {
         for $file-history.history-of( ~$f )<> -> %file-version {
             my $this-version = %file-version<state>;
             my $fecha = %file-version<date>;
-            my %estado-objetivos = estado-objetivos( @student-list,
+            my ( %estado-objetivos, %versiones-objetivos ) = estado-objetivos(
+                    @student-list,
                     $this-version, $objetivo);
             for %estado-objetivos.kv -> $estudiante, $estado {
                 my $estado-actual =
