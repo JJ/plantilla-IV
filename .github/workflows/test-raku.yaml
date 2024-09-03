@@ -6,7 +6,7 @@ jobs:
     permissions:
       packages: read
     container:
-      image: ghcr.io/jj/raku-zef-gha
+      image: ghcr.io/jj/raku-github-actions
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -14,7 +14,7 @@ jobs:
         uses: actions/cache@v4
         id: meta6
         with:
-          path: ~/.raku/
+          path: /home/raku/.raku/
           key: ${{ runner.os }}-${{ hashFiles('META6.json') }}
       - name: Install modules
         if: steps.meta6.outputs.cache-hit != 'true'
