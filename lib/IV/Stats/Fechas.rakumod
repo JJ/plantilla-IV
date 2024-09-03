@@ -2,34 +2,6 @@ use IO::Glob;
 use Git::File::History;
 use IV::Stats;
 
-enum Estados is export <CUMPLIDO ENVIADO INCOMPLETO NINGUNO>;
-
-sub estado-objetivos( @student-list, $contenido, $objetivo ) is export {
-    my @contenido = $contenido.split("\n").grep(/"|"/)[2..*];
-    my %estados;
-    my %asignaciones = asignaciones-objetivo2();
-    for @contenido -> $linea {
-        my $usuario;
-        next unless $linea ~~ /github/;
-        $linea ~~ /"github.com/" $<usuario> = (\S+?) "/"/;
-        $usuario = $<usuario>;
-        if ( $objetivo == 2 ) {
-            $usuario = %asignaciones{$<usuario>}
-        }
-        my $marca = $linea // "";
-        if  $marca  ~~  /"✓"/ {
-            %estados{$usuario}<estado> = CUMPLIDO;
-        } elsif  $marca ~~ /"✗"/  {
-            %estados{$usuario}<estado> = INCOMPLETO;
-        } elsif  $marca ~~ /"github.com"/  {
-            %estados{$usuario}<estado> = ENVIADO
-        }
-        $linea ~~ / v $<version> = ( \d+\.\d+\.\d+)/;
-        %estados{$usuario}<version> = Version.new($<version> // v0.0.0 );
-    }
-    return %estados;
-}
-
 unit class IV::Stats::Fechas;
 
 has @!fechas-entregas;

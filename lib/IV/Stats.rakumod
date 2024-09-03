@@ -11,16 +11,6 @@ sub lista-estudiantes(Str $file = "{ PROYECTOS }usuarios.md") is export {
     return @nick-lines.map(*.split(/"Enlace de"\s+/)[1])
 }
 
-unit class IV::Stats;
-
-has @!student-list;
-has %!students;
-has %!versiones;
-has @!objetivos;
-has @!entregas;
-
-my @cumplimiento = [.05, .075, .15, .075, .15, 0.075, 0.075, 0.1, 0.125, 0.125];
-
 sub asignaciones-objetivo2()  is export returns Associative {
     my @asignaciones = "{ ASIGNACIONES }".IO.lines[4 ..*];
 
@@ -31,6 +21,44 @@ sub asignaciones-objetivo2()  is export returns Associative {
     }
     return %asignaciones;
 }
+
+enum Estados is export <CUMPLIDO ENVIADO INCOMPLETO NINGUNO>;
+
+sub estado-objetivos( @student-list, $contenido, $objetivo ) is export {
+    my @contenido = $contenido.split("\n").grep(/"|"/)[2..*];
+    my %estados;
+    my %asignaciones = asignaciones-objetivo2();
+    for @contenido -> $linea {
+        my $usuario;
+        next unless $linea ~~ /github/;
+        $linea ~~ /"github.com/" $<usuario> = (\S+?) "/"/;
+        $usuario = $<usuario>;
+        if ( $objetivo == 2 ) {
+            $usuario = %asignaciones{$<usuario>}
+        }
+        my $marca = $linea // "";
+        if  $marca  ~~  /"✓"/ {
+            %estados{$usuario}<estado> = CUMPLIDO;
+        } elsif  $marca ~~ /"✗"/  {
+            %estados{$usuario}<estado> = INCOMPLETO;
+        } elsif  $marca ~~ /"github.com"/  {
+            %estados{$usuario}<estado> = ENVIADO
+        }
+        $linea ~~ / v $<version> = ( \d+\.\d+\.\d+)/;
+        %estados{$usuario}<version> = Version.new($<version> // v0.0.0 );
+    }
+    return %estados;
+}
+
+unit class IV::Stats;
+
+has @!student-list;
+has %!students;
+has %!versiones;
+has @!objetivos;
+has @!entregas;
+
+my @cumplimiento = [.05, .075, .15, .075, .15, 0.075, 0.075, 0.1, 0.125, 0.125];
 
 method new(Str $file = "{ PROYECTOS }usuarios.md") {
     my @student-list = lista-estudiantes($file);
@@ -45,7 +73,6 @@ method new(Str $file = "{ PROYECTOS }usuarios.md") {
         my @contenido = $f.IO.lines.grep(/"|"/);
         @objetivos[$objetivo] = set();
         @entregas[$objetivo] = set();
-
         for @student-list.kv -> $index, $usuario {
             my $indice-en-lista = $index + 2;
             my $fila = @contenido[$indice-en-lista];
