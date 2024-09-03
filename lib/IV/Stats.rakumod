@@ -36,6 +36,7 @@ method new(Str $file = "{ PROYECTOS }usuarios.md") {
     my %students;
     my @objetivos;
     my @entregas;
+    my @versiones;
     @student-list.map: { %students{$_} = { :objetivos(set()), :entrega(0) } };
 
     for glob("{ PROYECTOS }objetivo-*.md").sort: { $^a cmp $^b } -> $f {
