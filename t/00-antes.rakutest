@@ -7,14 +7,14 @@ use IV::Stats::Fechas;
 my @student-list = lista-estudiantes();
 my $contenido = (PROYECTOS ~ "objetivo-0.md").IO.slurp;
 constant OBJETIVO = 0;
-my (%objetivos-cumplidos,%versiones-objetivos) = estado-objetivos(
+my %objetivos-cumplidos = estado-objetivos(
         @student-list,
         $contenido,
         OBJETIVO );
 cmp-ok( %objetivos-cumplidos.keys.elems, ">", 0, "Objetivos cumplidos correctos" );
 
-say %versiones-objetivos;
-cmp-ok( %versiones-objetivos.keys.elems, ">", 0, "Versiones correctas" );
+my $primer-estudiante = %objetivos-cumplidos.keys()[0];
+cmp-ok( %objetivos-cumplidos{$primer-estudiante}<version>, ">=", v0.0.1);
 
 if "proyectos/objetivo-9.md".IO.e {
     $contenido = "proyectos/objetivo-9.md".IO.slurp;
