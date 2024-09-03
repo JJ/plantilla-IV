@@ -22,26 +22,27 @@ method new(Str $file = "{ PROYECTOS }usuarios.md") {
 
     for glob("{ PROYECTOS }objetivo-*.md").sort: { $^a cmp $^b } -> $f {
         my ($objetivo) := $f ~~ /(\d+)/;
-        my @contenido = $f.IO.lines.grep(/"|"/);
+        my $contenido = $f.IO.slurp();
+        my %estado-objetivos =
+                estado-objetivos( @student-list, $contenido, $objetivo );
         @objetivos[$objetivo] = set();
         @entregas[$objetivo] = set();
-        for @student-list.kv -> $index, $usuario {
-            my $indice-en-lista = $index + 2;
-            my $fila = @contenido[$indice-en-lista];
-            if ($fila ~~ /"✓"/) {
+        for @student-list -> $usuario {
+            my $estado-objetivo = %estado-objetivos{$usuario};
+            if $estado-objetivo<estado> == CUMPLIDO  {
                 %students{$usuario}<objetivos> ∪= +$objetivo;
                 @objetivos[$objetivo] ∪= $usuario;
-            }
-            if ($fila ~~ /"github.com"/) {
+            } elsif $estado-objetivo<estado> == ENVIADO {
                 %students{$usuario}<entrega> = +$objetivo;
                 @entregas[$objetivo] ∪= $usuario;
             }
+            %versiones{$usuario} = $estado-objetivo<version>;
         }
     }
-    self.bless(:@student-list, :%students, :@objetivos, :@entregas);
+    self.bless(:@student-list, :%students, :@objetivos, :@entregas, :%versiones);
 }
 
-submethod BUILD(:@!student-list, :%!students, :@!objetivos, :@!entregas) {}
+submethod BUILD(:@!student-list, :%!students, :@!objetivos, :@!entregas, :%!versiones) {}
 
 method objetivos-de(Str $user) {
     return %!students{$user}<objetivos>;
