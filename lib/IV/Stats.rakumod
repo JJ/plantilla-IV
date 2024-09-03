@@ -15,6 +15,7 @@ unit class IV::Stats;
 
 has @!student-list;
 has %!students;
+has %!versiones;
 has @!objetivos;
 has @!entregas;
 

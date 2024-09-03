@@ -25,7 +25,6 @@ sub estado-objetivos( @student-list, $contenido, $objetivo ) is export {
             %estados{$usuario}<estado> = ENVIADO
         }
         $linea ~~ / v $<version> = ( \d+\.\d+\.\d+)/;
-        say $linea;
         %estados{$usuario}<version> = Version.new($<version> // v0.0.0 );
     }
     return %estados;
