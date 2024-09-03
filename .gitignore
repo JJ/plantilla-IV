@@ -1,7 +1,6 @@
 *.lib-cov
 *.seed
 *.log
-*.csv
 *.dat
 *.out
 *.pid
@@ -13,7 +12,6 @@
 # Ignore Mac DS_Store files
 .DS_Store
 
-.DS_Store
 kk
 no-es-kk
 
