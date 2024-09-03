@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - "**/*.raku"
+      - "**/*.rakumod"
       - t/*.rakutest
       - "data/*"
       - .github/workflows/test-raku.yaml
