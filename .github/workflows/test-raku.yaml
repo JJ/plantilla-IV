@@ -18,6 +18,6 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('META6.json') }}
       - name: Install modules
         if: steps.meta6.outputs.cache-hit != 'true'
-        run: zef install .
+        run: zef install --deps-only .
       - name: Test
         run: zef --debug test .

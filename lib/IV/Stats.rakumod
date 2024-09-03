@@ -1,8 +1,8 @@
 use IO::Glob;
 use Git::File::History;
 
-constant PROYECTOS = "proyectos/";
-constant ASIGNACIONES = "{ PROYECTOS }asignaciones-objetivo-2.md";
+constant PROYECTOS is export = "proyectos/";
+constant ASIGNACIONES is export = "{ PROYECTOS }asignaciones-objetivo-2.md";
 
 sub lista-estudiantes(Str $file = "{ PROYECTOS }usuarios.md") is export {
     my @nick-lines = $file.IO.slurp.lines.grep(/"<!--"/)

@@ -5,7 +5,7 @@ use IV::Stats;
 use IV::Stats::Fechas;
 
 my @student-list = lista-estudiantes();
-my $contenido = "proyectos/objetivo-0.md".IO.slurp;
+my $contenido = (PROYECTOS ~ "objetivo-0.md").IO.slurp;
 constant OBJETIVO = 0;
 my %objetivos-cumplidos = estado-objetivos( @student-list, $contenido,
         OBJETIVO );
