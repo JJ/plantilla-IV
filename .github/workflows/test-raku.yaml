@@ -1,5 +1,11 @@
 name: "Test in a Raku container"
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - **/*.raku
+      - **/*.rakutest
+      - data/*
+      - .github/workflows/test-raku.yaml
 jobs:
   test:
     runs-on: ubuntu-latest
