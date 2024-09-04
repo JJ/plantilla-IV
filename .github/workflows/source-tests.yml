@@ -26,14 +26,9 @@ jobs:
       - name: Comprueba expresión
         env:
           THIS_VERSION: ${{ steps.pr_info.outputs.version }}
-          VERSION_MINOR: ${{join( ["v", join([ "0", steps.pr_info.outputs.objetivo], "." )])}}
-        run: echo ${THIS_VERSION} + ${VERSION_MINOR}
-      - name: Comprueba si la versión es correcta
-        if: ${{ !startswith( steps.pr_info.outputs.version, join( ["v", join([ "0", steps.pr_info.outputs.objetivo], "." )]) )}}
-        env:
-          THIS_VERSION: ${{ steps.pr_info.outputs.version }}
-          VERSION_MINOR: ${{join( ["v", join([ "0", steps.pr_info.outputs.objetivo], "." )])}}
-        run: echo Version $THIS_VERSION no comienza con VERSION_MINOR
+          OBJETIVO: ${{ steps.pr_info.outputs.objetivo }}
+        run: print $ENV{'THIS_VERSION'} . " and " .  $ENV{'OBJETIVO'};
+        shell: perl {0}
   ops-on-source:
     runs-on: ubuntu-latest
     outputs:
