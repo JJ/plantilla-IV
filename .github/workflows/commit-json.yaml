@@ -6,7 +6,6 @@ on:
     paths:
       - proyectos/objetivo*.md
       - lib/**
-      - t/**
       - .github/workflows/commit-json.yaml
 
 jobs:
