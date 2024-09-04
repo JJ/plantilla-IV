@@ -23,6 +23,11 @@ jobs:
         uses: JJ/grading-pr-info-gh-action@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Comprueba expresión
+        env:
+          THIS_VERSION: ${{ steps.pr_info.outputs.version }}
+          VERSION_MINOR: ${{join( ["v", join([ "0", steps.pr_info.outputs.objetivo], "." )])}}
+        run: echo ${THIS_VERSION} + ${VERSION_MINOR}
       - name: Comprueba si la versión es correcta
         if: ${{ !startswith( steps.pr_info.outputs.version, join( ["v", join([ "0", steps.pr_info.outputs.objetivo], "." )]) )}}
         env:
