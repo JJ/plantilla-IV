@@ -6,10 +6,10 @@ on:
     paths:
       - proyectos/objetivo*.md
       - lib/**
-      - .github/workflows/commit-json.yaml
+      - .github/workflows/genera-datos.yml
 
 jobs:
-  genera-objetivos:
+  genera-datos:
     runs-on: ubuntu-latest
     permissions:
       contents: write
