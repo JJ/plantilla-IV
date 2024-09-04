@@ -23,12 +23,11 @@ jobs:
         uses: JJ/grading-pr-info-gh-action@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Comprueba expresión
+      - name: Comprueba versión
         env:
           THIS_VERSION: ${{ steps.pr_info.outputs.version }}
           OBJETIVO: ${{ steps.pr_info.outputs.objetivo }}
-        run: print $ENV{'THIS_VERSION'} . " and " .  $ENV{'OBJETIVO'};
-        shell: perl {0}
+        run: scripts/chek-version
   ops-on-source:
     runs-on: ubuntu-latest
     outputs:
