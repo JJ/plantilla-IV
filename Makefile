@@ -22,6 +22,9 @@ notas:
 revisores:
 	fatpack pack src/random-reviewer.pl > scripts/random-reviewer
 
+versiones:
+	fatpack pack src/check-version.pl > scripts/check-version
+
 fechas:
 	raku -Ilib scripts/iv-fechas-csv.raku > data/fechas-entrega.csv
 
