@@ -77,7 +77,7 @@ jobs:
       - name: Descarga fuente
         uses: actions/checkout@v4
       - name: Comprueba que el PR está asignado a un milestone
-        uses: actions/github-script@v5
+        uses: actions/github-script@v7
         if: ${{env.objetivo >= 2}}
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -90,7 +90,7 @@ jobs:
                 console.log( all_good(`PR asignado al milestone ${milestone}`))
             }
       - name: Comprueba hitos desde el 1
-        uses: actions/github-script@v5
+        uses: actions/github-script@v7
         if: ${{ env.objetivo >= 1 }}
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
