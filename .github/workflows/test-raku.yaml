@@ -1,4 +1,4 @@
-name: "Test in a Raku container"
+name: "Testea código Raku"
 on:
   push:
     paths:
