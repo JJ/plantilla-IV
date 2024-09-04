@@ -25,9 +25,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Descarga fuente
         uses: actions/checkout@v4
-        with:
-          repository: ${{env.checkout_repo}}
-          ref: ${{env.rama}}
       - name: Comprueba versión
         env:
           THIS_VERSION: ${{ steps.pr_info.outputs.version }}
