@@ -27,7 +27,7 @@ jobs:
         env:
           THIS_VERSION: ${{ steps.pr_info.outputs.version }}
           OBJETIVO: ${{ steps.pr_info.outputs.objetivo }}
-        run: scripts/chek-version
+        run: scripts/check-version
   ops-on-source:
     runs-on: ubuntu-latest
     outputs:
