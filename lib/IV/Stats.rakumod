@@ -76,6 +76,10 @@ method estudiantes() {
     return @!student-list;
 }
 
+method versiones() {
+    return %!versiones;
+}
+
 method objetivos-cumplidos() {
     return @!objetivos.map(*.keys.sort({ $^a.lc cmp $^b.lc }));
 }

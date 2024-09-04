@@ -6,11 +6,10 @@ on:
     paths:
       - proyectos/objetivo*.md
       - lib/**
-      - t/**
-      - .github/workflows/commit-json.yaml
+      - .github/workflows/genera-datos.yml
 
 jobs:
-  genera-objetivos:
+  genera-datos:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -37,6 +36,8 @@ jobs:
         run: raku -Ilib scripts/iv-objetivos.raku > data/objetivos.json
       - name: Genera fechas de entrega
         run: raku -Ilib scripts/iv-fechas-csv.raku > data/fechas-entrega.csv
+      - name: Guarda últimas versiones
+        run: raku -Ilib scripts/iv-versiones.raku > data/versiones.json
       - name: Sube JSON actualizado
         run: |
           if [ -n "$(git status -s)" ]; then
