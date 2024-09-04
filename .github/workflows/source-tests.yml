@@ -16,12 +16,19 @@ jobs:
       rama: ${{steps.pr_info.outputs.rama}}
       pr_milestone: ${{steps.pr_info.outputs.pr_milestone}}
       pull_number: ${{steps.pr_info.outputs.pull_number}}
+      version: ${{steps.pr_info.outputs.version}}
     steps:
       - id: pr_info
-        name: Comprueba y analiza
+        name: Comprobaciones básicas y extracción de información
         uses: JJ/grading-pr-info-gh-action@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Comprueba si la versión es correcta
+        if: ${{ !startswith( steps.pr_info.outputs.version, join( ["v", join([ "0", steps.pr_info.outputs.objetivo], "." )]) )}}
+        env:
+          THIS_VERSION: ${{ steps.pr_info.outputs.version }}
+          VERSION_MINOR: ${{join( ["v", join([ "0", steps.pr_info.outputs.objetivo], "." )])}}
+        run: echo Version $THIS_VERSION no comienza con VERSION_MINOR
   ops-on-source:
     runs-on: ubuntu-latest
     outputs:
