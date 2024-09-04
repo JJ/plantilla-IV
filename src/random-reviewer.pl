@@ -46,7 +46,7 @@ for ( my $i = 0; $i < $num_reviewers; $i ++ ) {
   push( @reviewers, "\@".$this_reviewer );
 }
 
-my $data = "[🔗](https://github.com/$user/$repo/pull/$pull_number) ⛹ Revisores → ". join(" ", @reviewers);
+my $data = "[🔗](https://github.com/$user/$repo/pull/$pull_number) ⛹ Revisores → ". join(" :heavy_plus_sign: ", @reviewers);
 my $post_data = sprintf('{"body":"%s"}', $data);
 my $url = sprintf('https://api.github.com/repos/JJ/IV-/issues/%s/comments', $pr_number);
 
