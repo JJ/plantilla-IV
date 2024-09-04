@@ -37,6 +37,8 @@ jobs:
         run: raku -Ilib scripts/iv-objetivos.raku > data/objetivos.json
       - name: Genera fechas de entrega
         run: raku -Ilib scripts/iv-fechas-csv.raku > data/fechas-entrega.csv
+      - name: Guarda últimas versiones
+        run: raku -Ilib scripts/iv-versiones.raku > data/versiones.csv
       - name: Sube JSON actualizado
         run: |
           if [ -n "$(git status -s)" ]; then
