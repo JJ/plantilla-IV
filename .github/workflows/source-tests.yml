@@ -236,7 +236,9 @@ jobs:
     steps:
       - name: Fuentes de este repo (para JSON)
         uses: actions/checkout@v4
-      - name: Paquete no fatpackeado
-        run: sudo apt install liblwp-protocol-https-perl
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: liblwp-protocol-https-perl
+          version: 1.0
       - name: Revisores aleatorios
         run: scripts/random-reviewer
