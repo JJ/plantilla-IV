@@ -30,7 +30,7 @@ jobs:
           THIS_VERSION: ${{ steps.pr_info.outputs.version }}
           OBJETIVO: ${{ steps.pr_info.outputs.objetivo }}
         run: scripts/check-version
-      - name: Comprueba que el usuario user no ha abierto ningún otro PR
+      - name: Comprueba que el usuario no ha abierto ningún otro PR
         uses: actions/github-script@v7
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
