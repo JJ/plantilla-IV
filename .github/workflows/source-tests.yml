@@ -30,6 +30,24 @@ jobs:
           THIS_VERSION: ${{ steps.pr_info.outputs.version }}
           OBJETIVO: ${{ steps.pr_info.outputs.objetivo }}
         run: scripts/check-version
+      - name: Comprueba que el usuario user no ha abierto ningún otro PR
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+
+          script: |
+            const {all_good, sorry } = require("./lib/mensajes.js")
+            // get user from steps.pr_info.outputs.user
+            const user = ${{ steps.pr_info.outputs.user }}
+            const repo = ${{ github.event.repository.name }}
+            const prs = await github.rest.pulls.list( { owner: user, repo: repo, state: 'open' } )
+            const prs_by_user = prs.data.filter( pr => pr.user.login === user )
+            if ( prs_by_user.length > 1 ) {
+              core.setFailed( sorry("El usuario " + user + " tiene más de un PR abierto") )
+            } else {
+              console.log( all_good("El usuario " + user + " solo tiene un PR abierto"))
+            }
+
   ops-on-source:
     runs-on: ubuntu-latest
     outputs:
