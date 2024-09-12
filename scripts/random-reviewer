@@ -24870,20 +24870,32 @@ use File::Slurper 'read_text';
 use GitHub::Actions;
 use LWP::UserAgent;
 
-use constant MAXREVIEWERS => 5;
 
-my $filename = "data/objetivos.json";
-my $objetivos_json;
-
-if ( -e $filename ) {
-  $objetivos_json = read_text( $filename );
-} elsif ( -e "../$filename" ) {
-  $objetivos_json = read_text( "../$filename" );
-} else {
-  die "No encuentro el fichero de objetivos";
+# subs
+sub procesa_entregas( $ $ $ ) {
+  my $entregas_csv = shift;
+  my $user = shift;
+  my $objetivo = shift;
+  my @lines = split("\n",$entregas_csv);
+  my @this_objetivo = grep /^$objetivo;/, @lines;
+  my @users = map { my @columnas = split(/;\s*/); $columnas[1] } @this_objetivo;
+  return grep $_ ne $user, @users;
 }
 
-my @objetivos = @{from_json( $objetivos_json )};
+#-------------------
+
+use constant MAXREVIEWERS => 5;
+
+my $filename = "data/fechas-entrega.csv";
+my $entregas_csv;
+
+if ( -e $filename ) {
+  $entregas_csv = read_text( $filename );
+} elsif ( -e "../$filename" ) {
+  $entregas_csv = read_text( "../$filename" );
+} else {
+  die "No encuentro el fichero de entregas";
+}
 
 my $este_objetivo = $ENV{'objetivo'} || 0;
 my $user          = $ENV{'user'};
@@ -24892,7 +24904,7 @@ my $pull_number   = $ENV{'pull_number'};
 my $auth_token    = $ENV{'COMMENT_TOKEN'};
 my $pr_number     = $ENV{'this_pr_number'};
 
-my @these_students = @{$objetivos[$este_objetivo]};
+my @these_students = procesa_entregas( $entregas_csv, $user, $este_objetivo );
 
 if ( !@these_students ) {
   warning( "Todavía no hay suficientes personas para poder revisarlo" );
