@@ -37,9 +37,9 @@ jobs:
 
           script: |
             const {all_good, sorry } = require("./lib/mensajes.js")
-            // get user from steps.pr_info.outputs.user
             const user = ${{ steps.pr_info.outputs.user }}
             const repo = ${{ github.event.repository.name }}
+            console.warn( "» Analizando repo " + repo + " del usuario 🔥" + user )
             const prs = await github.rest.pulls.list( { owner: user, repo: repo, state: 'open' } )
             const prs_by_user = prs.data.filter( pr => pr.user.login === user )
             if ( prs_by_user.length > 1 ) {
