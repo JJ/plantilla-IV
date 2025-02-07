@@ -3,14 +3,15 @@
 > Si no entiendes bien esto a la primera lectura, lee el [COMO](COMO.md)
 
 Agradeceré que contestes la [encuesta
-inicial](https://forms.gle/ZMRazHrcqGkxty9u5)
+inicial]()
 si no lo has hecho ya.
 
-Se recuerda al estudiante que es su responsabilidad asistir a clase o, si no es
-posible, enterarse de los contenidos impartidos en la misma a través de esta
+Se recuerda al estudiante que es su obligatorio asistir a clase o, si está
+justificado, enterarse de los contenidos impartidos en la misma a través de esta
 web, el grupo de Telegram o los compañeros. Se recomienda encarecidamente, en
-todo caso, asistir al menos a las primeras clases, al menos hasta que complete
-el [segundo objetivo](http://jj.github.io/IV/documentos/proyecto/2.Modelo).
+todo caso, asistir al menos a las primeras clases, incluso pidiendo tiempo en el
+trabajo, al menos hasta que complete el [segundo
+objetivo](http://jj.github.io/IV/documentos/proyecto/2.Modelo).
 
 ## Antes de la clase
 
@@ -39,8 +40,8 @@ Lista de comprobación:
    0](http://jj.github.io/IV/documentos/proyecto/0.Repositorio) en la primera
    clase o la siguiente.
 5. Entender qué es lo que se evalúa y por qué. Se trata de aprender metodologías
-   y aplicarlas para obtener un resultado, *no* de poner un resultado y luego
-   decir que se han aplicado metodologías.
+   y aplicarlas para obtener un resultado, ** *no* de poner un resultado y luego
+   decir que se han aplicado metodologías**.
 6. Entender el proceso de *design thinking* y comenzarlo para entender
    el problema que se va a abordar en la asignatura.
 7. Empezar a usar git y GitHub (o usarlo más intensamente). Por
@@ -51,7 +52,7 @@ Lista de comprobación:
 
 ## Contenidos
 
-### Clases divididas (19 de septiembre)
+### Clases divididas ( de septiembre)
 
 * Presentación del profesor de la asignatura.
 * Enlaces a los recursos:
@@ -106,6 +107,11 @@ Lista de comprobación:
   mantengan privados, sin embargo.
 * Cómo trabajar remotamente o llevar al día la asignatura. Respondiendo a la
   pregunta: ¿asistir a clase es obligatorio?
+* Entender git a través de esta [introducción a
+git](http://jj.github.io/IV/preso/git.html#/), y las buenas prácticas de uso de
+GitHub.
+* [Entender el objetivo 0](http://jj.github.io/IV/documentos/proyecto/0.Repositorio) que se revisará
+sobre la marcha (dentro de lo posible).
 
 #### *Design* thinking y cómo usarlo para formular problemas a resolver en informática.
 
@@ -124,25 +130,10 @@ objetivo 0, siguiendo las
 Se habrá dado de alta GitHub (si no se está), inicializado el repositorio con el
 proyecto, entendido qué se espera del estudiante en la asignatura.
 
-### Sesión conjunta (día 20 de septiembre)
+### Sesión conjunta (día  de septiembre)
 
-No hay diferencia entre teoría y práctica, toda la asignatura es
-práctica. Estas explicaciones están dirigidas a grupos pequeños. Esta
-sesión tiene los siguientes objetivos. Con el grupo presente que no
-haya hecho el juego de rol anterior o no haya conseguido que le
-validen el problema todavía, se continúa [el
-mismo](http://jj.github.io/IV/documentos/actividades).
-
-* Entender git a través de esta [introducción a
-git](http://jj.github.io/IV/preso/git.html#/), y las buenas prácticas de uso de
-GitHub.
-
-* [Entender el objetivo 0](http://jj.github.io/IV/documentos/proyecto/0.Repositorio) que se revisará
-sobre la marcha (dentro de lo posible).
-
-#### Al final de esta clase: Objetivos mínimos
-
-Haber entendido los mecanismos de la asignatura y entregado el Objetivo 0.
+Comenzaremos con el hackatón. La **asistencia al hackatón** es obligatoria
+durante las primeras 6 semanas de clase.
 
 #### En caso de que haya tiempo
 
