@@ -101,7 +101,9 @@ Lista de comprobación:
 #### Entrando en materia
 
 * Introducción al [desarrollo ágil](https://jj.github.io/IV/preso/agil.html) y el software libre. Los proyectos que se
-  presenten *son software libre* y por tanto no pueden ser privados.
+  presenten *son software libre* y por tanto no pueden ser privados *todo el
+  tiempo*. Se le pedirá al estudiante que cuando no estén bajo evaluación se
+  mantengan privados, sin embargo.
 * Cómo trabajar remotamente o llevar al día la asignatura. Respondiendo a la
   pregunta: ¿asistir a clase es obligatorio?
 
