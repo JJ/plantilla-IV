@@ -10,5 +10,6 @@ Repositorio para el material específico de cada clase, planificación y ejercic
 * Las entregas de los diferentes objetivos se hacen mediante pull requests a
   ficheros en [este directorio](proyectos). Lee [las
   instrucciones](proyectos/README.md) para hacerlo correctamente, y resolver los
-  conflictos que puedan surgir.
+  conflictos que puedan surgir. Antes de entregar el proyecto, comprueba que [no
+  se está cayendo en ninguno de los errores comunes](errores/README.md)
 
