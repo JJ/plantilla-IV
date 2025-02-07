@@ -1,9 +1,9 @@
-# Semana del 11 de septiembre; comienzo del curso
+# Semana del 16 de septiembre; comienzo del curso
 
 > Si no entiendes bien esto a la primera lectura, lee el [COMO](COMO.md)
 
 Agradeceré que contestes la [encuesta
-inicial](https://docs.google.com/forms/d/e/1FAIpQLScfpAviOhfq8m5KN9ejb1WWVcIIIqTi10Zt2vnrUQ1VhPkJAA/viewform?usp=sf_link)
+inicial](https://forms.gle/ZMRazHrcqGkxty9u5)
 si no lo has hecho ya.
 
 Se recuerda al estudiante que es su responsabilidad asistir a clase o, si no es
@@ -36,9 +36,9 @@ Lista de comprobación:
 3. [Entender como enfocar el aprendizaje en ingeniería](https://www.youtube.com/watch?v=HLXrAdK1iZ4)
 4. Entender y entregar el
    [objetivo
-   0](http://jj.github.io/IV/documentos/proyecto/0.Repositorio). Sugerencia de
-   entrega: en la siguiente clase.
-5. Entender el proceso de design thinking y comenzarlo para entender
+   0](http://jj.github.io/IV/documentos/proyecto/0.Repositorio) en la primera
+   clase o la siguiente.
+5. Entender el proceso de *design thinking* y comenzarlo para entender
    el problema que se va a abordar en la asignatura.
 6. Empezar a usar git y GitHub (o usarlo más intensamente). Por
    ejemplo, [seguir este
@@ -48,7 +48,7 @@ Lista de comprobación:
 
 ## Contenidos
 
-### Clase conjunta (14 de septiembre)
+### Clases divididas (19 de septiembre)
 
 * Presentación del profesor de la asignatura.
 * Enlaces a los recursos:
@@ -61,6 +61,38 @@ Lista de comprobación:
   incluyendo eliminación de la distinción teoría/prácticas y las
   consecuencias que trae.
   * [Metodología y criterios de evaluación](../Metodología_y_criterios_de_evaluación.md).
+  * Bases de la evaluación formativa, basada en objetivos:
+    * Los objetivos se pre-evalúan automáticamente usando sistemas
+  integrados en GitHub. Cuando los indicadores están en rojo, es que
+  ha habido algún error. Hay que pinchar en el mismo y navegar hasta
+  encontrar el error concreto en la página del sistema que lanza los
+  tests.
+    * *Cómo se va a usar la evaluación formativa*: los tests automáticos indicarán
+  si se han alcanzado los objetivos mínimos, a través del pull request que se
+  haga se indicará qué es necesario para cubrir el resto de los objetivos. Los
+  objetivos alcanzados se calificarán al final de la asignatura según la
+  dificultad de los mismos.
+    * En el momento que se alcance el quinto objetivo, se puede
+    solicitar al profesor calificación del 30% restante para
+    abandonar, si se desea, la asignatura.
+    * Para "entregar" cada objetivo:
+      * Se crea una rama específica por objetivo en el repositorio del proyecto
+      *del estudiante*.
+      * Se hace un PR **a uno mismo, en el mismo repositorio** indicando qué
+    cambios se han hecho para alcanzar este objetivo *y siguiendo la lista de
+    comprobación*.
+    * Se incluye en el fichero `objetivos-x.md` *de este repositorio*
+    un *enlace al pull request* desde el que se esté haciendo el PR.
+    * En la columna correspondiente se tendrá que incluir una versión del envío
+      siguiendo las reglas comunes en versiones, y las indicadas en el guión del
+      objetivo. Si han fallado los tests y hay que enviar de nuevo, habrá que
+      incrementar la versión.
+    * Una vez fusionado el PR *en este repositorio*, el profesor revisará el PR
+      *del estudiante* haciendo indicaciones para que el estudiante supere el
+      objetivo en otro caso.
+    * Hay que esperar que el profesor apruebe el PR *de nuestro repositorio*, es
+    decir, el objetivo se considere alcanzado, para fusionarlo.
+
 * **Juego de rol**: formular y entender un problema para abordar en la asignatura.
 
 #### Entrando en materia
@@ -70,12 +102,12 @@ Lista de comprobación:
 * Cómo trabajar remotamente o llevar al día la asignatura. Respondiendo a la
   pregunta: ¿asistir a clase es obligatorio?
 
-#### Design thinking y cómo usarlo para formular problemas a resolver en informática.
+#### *Design* thinking y cómo usarlo para formular problemas a resolver en informática.
 
 [Sigue estas instrucciones](http://jj.github.io/IV/documentos/actividades/juego-rol-design-thinking).
 
 > Os ruego que una vez terminada la actividad, [rellenéis este formulario para
-> evaluarla](https://forms.gle/5j4m7ZajPY1aEWYv5)
+> evaluarla](https://docs.google.com/forms/d/e/1FAIpQLScAOYA-114fbgh7pDsKH0g_iqm4yOzlOOH1GvzSL8t-IIomlw/viewform)
 
 Una vez esté el problema (que se va a resolver en la asignatura) validado, se puede proceder a entregar el
 objetivo 0, siguiendo las
@@ -87,7 +119,7 @@ objetivo 0, siguiendo las
 Se habrá dado de alta GitHub (si no se está), inicializado el repositorio con el
 proyecto, entendido qué se espera del estudiante en la asignatura.
 
-### Sesión dividida (día 15 de septiembre)
+### Sesión conjunta (día 20 de septiembre)
 
 No hay diferencia entre teoría y práctica, toda la asignatura es
 práctica. Estas explicaciones están dirigidas a grupos pequeños. Esta
@@ -100,38 +132,12 @@ mismo](http://jj.github.io/IV/documentos/actividades).
 git](http://jj.github.io/IV/preso/git.html#/), y las buenas prácticas de uso de
 GitHub.
 
-* Bases de la evaluación formativa, basada en objetivos:
-  * Los objetivos se pre-evalúan automáticamente usando sistemas
-  integrados en GitHub. Cuando los indicadores están en rojo, es que
-  ha habido algún error. Hay que pinchar en el mismo y navegar hasta
-  encontrar el error concreto en la página del sistema que lanza los
-  tests.
-  * *Cómo se va a usar la evaluación formativa*: los tests automáticos
-  indicarán si se han alcanzado los objetivos mínimos, a través del
-  pull request que se haga se indicará qué es necesario para cubrir el
-  resto de los objetivos. Los objetivos alcanzados se calificarán
-  según la dificultad de los mismos.
-  * En el momento que se alcance el quinto objetivo, se puede
-    solicitar al profesor calificación del 30% restante para
-    abandonar, si se desea, la asignatura.
-  * Para "entregar" cada objetivo:
-    * Se crea una rama específica para cada uno en el repositorio del proyecto.
-    * Se hace un PR en el **repositorio propio** indicando qué cambios se han hecho
-    para alcanzar este objetivo.
-    * Se incluye en el fichero `objetivos-x.md` *de este repositorio*
-    un *enlace al pull request* desde el que se esté haciendo el PR.
-    * Hay que esperar que el profesor apruebe el PR *de nuestro
-    repositorio* para fusionarlo. Cuando se apruebe el PR, se habrá
-    alcanzado el objetivo. El profesor hará indicaciones para que el
-    estudiante supere el objetivo en otro caso.
-
 * [Entender el objetivo 0](http://jj.github.io/IV/documentos/proyecto/0.Repositorio) que se revisará
 sobre la marcha (dentro de lo posible).
 
 #### Al final de esta clase: Objetivos mínimos
 
-Haber entendido los mecanismos de la asignatura y empezado a trabajar en el
-objetivo 0.
+Haber entendido los mecanismos de la asignatura y entregado el Objetivo 0.
 
 #### En caso de que haya tiempo
 
