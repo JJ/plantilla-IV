@@ -1,13 +1,5 @@
-# Semana del 30 de septiembre
+# Semana del x de septiembre
 
-Se recuerda al estudiante que es su responsabilidad asistir a clase o, si no es
-posible, enterarse de los contenidos impartidos en la misma a través de esta
-web, el grupo de Telegram o los compañeros. Se recomienda encarecidamente, en
-todo caso, asistir a las primeras clases, al menos hasta que complete el
-[segundo objetivo](http://jj.github.io/IV/documentos/proyecto/2.Modelo).
-
-Comienza el [Hacktoberfest](https://hacktoberfest.org). Si has llegado al
-objetivo 2, sigue las instrucciones para que se pueda participar en el mismo.
 
 ## Antes de la clase
 
@@ -17,16 +9,7 @@ comienzo. Un 50% de los que aprobaron habían entregado ya el objetivo 1.
 
 ## Objetivos alcanzados hasta ahora
 
-```text
- 0 🧮: 40%🚧 50%✅ 10%❌ ⇒ 
-     🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧
-     ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅ ✅
-     ❌ ❌ ❌ ❌
- 1 🧮: 22%🚧  7%✅ 70%❌ ⇒ 
-     🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧
-     ✅ ✅ ✅
-     ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌
-```
+
 
 
 ## Material de la asignatura
