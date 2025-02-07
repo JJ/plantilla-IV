@@ -135,6 +135,11 @@ proyecto, entendido qué se espera del estudiante en la asignatura.
 Comenzaremos con el hackatón. La **asistencia al hackatón** es obligatoria
 durante las primeras 6 semanas de clase.
 
+  * Se trabajará en equipo en un proyecto a elegir entre
+  [este](https://github.com/danibarranqueroo/TransporteEquitativo) y
+  [este](https://github.com/smallPingu/antiTarjetas).
+
+
 #### En caso de que haya tiempo
 
 Comenzar con el siguiente [objetivo del
