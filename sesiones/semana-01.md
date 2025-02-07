@@ -38,9 +38,12 @@ Lista de comprobación:
    [objetivo
    0](http://jj.github.io/IV/documentos/proyecto/0.Repositorio) en la primera
    clase o la siguiente.
-5. Entender el proceso de *design thinking* y comenzarlo para entender
+5. Entender qué es lo que se evalúa y por qué. Se trata de aprender metodologías
+   y aplicarlas para obtener un resultado, *no* de poner un resultado y luego
+   decir que se han aplicado metodologías.
+6. Entender el proceso de *design thinking* y comenzarlo para entender
    el problema que se va a abordar en la asignatura.
-6. Empezar a usar git y GitHub (o usarlo más intensamente). Por
+7. Empezar a usar git y GitHub (o usarlo más intensamente). Por
    ejemplo, [seguir este
    vídeo](https://www.youtube.com/watch?v=gmXyJI01qa8) o cualquier
    otro tutorial online, tal como
