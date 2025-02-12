@@ -8,4 +8,4 @@ iniciales.
 
 | URL                                        | Versión | Alcanzado |
 |--------------------------------------------|---------|-----------|
-| https://github.com/JJ/dummy-IV/pull/9      | v0.0.2 | | 
+
