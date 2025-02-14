@@ -188,11 +188,11 @@ jobs:
           script: |
             const {all_good, sorry } = require("./lib/mensajes.js")
             const milestone = process.env.pr_milestone
-            if ( milestone === "" ) {
-                core.setFailed( sorry( "El PR tiene que estar asignado a un milestone") )
-            } else {
-                console.log( all_good(`PR asignado al milestone ${milestone}`))
-            }
+            compruebaYFalla(
+              milestone === "",
+              "El PR tiene que estar asignado a un milestone",
+              `PR asignado al milestone ${milestone}`
+            );
 
       - name: Comprueba el estado de CI
         if: ${{env.objetivo >= 6 }}
@@ -222,11 +222,11 @@ jobs:
                         })
             const checks = await github.paginate( checks_before_pag)
             console.log( "Checks → ", checks)
-            if ( checks.length < 1 ) {
-              core.setFailed( sorry("No hay suficientes sistemas de CI configurados"))
-            } else {
-              console.log( all_good("✅ Hay " + checks.length + " sistemas de CI configurados"))
-            }
+            compruebaYFalla(
+              checks.length < 1 ,
+              "No hay suficientes sistemas de CI configurados",
+              "✅ Hay " + checks.length + " sistemas de CI configurados")
+            );
             const green_checks = checks.filter( check => check.conclusion === "success" )
             if ( !green_checks.length ) {
               core.setFailed(sorry("No hay al menos un CI que esté en verde"))
