@@ -1,4 +1,3 @@
-requires "Mojo::UserAgent";
 requires "IO::Socket::SSL", "> 2.089";
 requires "File::Slurper";
 requires "Git";
