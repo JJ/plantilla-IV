@@ -47,8 +47,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: prNumber,
-                body: "🍋💥❌ **Pull Request cerrado automáticamente**\\n\\n" +
-                      "😞 Lo sentimos mucho... \\n\\n" +
+                body: sorry("**Pull Request cerrado automáticamente**\\n\\n" +
                       "Este Pull Request ha sido cerrado automáticamente porque has creado el PR desde tu rama `" + rama + "`.\\n\\n" +
                       "**¿Por qué es esto un problema?**\\n" +
                       "- Trabajar directamente en la rama `" + rama + "` puede causar conflictos al hacer merge\\n" +
@@ -65,7 +64,7 @@ jobs:
                       "- [Guía de branches en Git](https://git-scm.com/book/es/v2/Ramificaciones-en-Git-Procedimientos-B%C3%A1sicos-para-Ramificar-y-Fusionar)\\n" +
                       "- [Flujo de trabajo con Git](https://www.atlassian.com/es/git/tutorials/comparing-workflows)\\n\\n" +
                       "Por favor, crea un nuevo Pull Request desde una rama que no sea `" + rama + "`.\\n\\n" +
-                      "¡Gracias! 🙂"
+                      "¡Gracias! 🙂")
               });
               
               // Cerrar el PR
