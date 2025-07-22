@@ -47,7 +47,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: prNumber,
-                body: "🚫 **Pull Request cerrado automáticamente**\\n\\n" +
+                body: "🍋💥❌ **Pull Request cerrado automáticamente**\\n\\n" +
                       "Hola 👋\\n\\n" +
                       "Este Pull Request ha sido cerrado automáticamente porque has creado el PR desde tu rama `" + rama + "`.\\n\\n" +
                       "**¿Por qué es esto un problema?**\\n" +
@@ -60,7 +60,8 @@ jobs:
                       "3. Haz commit de tus cambios: `git commit -am \"Descripción de cambios\"`\\n" +
                       "4. Sube la rama: `git push origin nombre-de-tu-rama`\\n" +
                       "5. Crea un nuevo Pull Request desde esa rama\\n\\n" +
-                      "**Recursos útiles:**\\n" +
+                      "**Guías y recursos útiles:**\\n" +
+                      "- [Guía específica para entrega de la práctica](https://jj.github.io/IV/documentos/proyecto/0.Repositorio#entrega-de-la-pr%C3%A1ctica)\\n" +
                       "- [Guía de branches en Git](https://git-scm.com/book/es/v2/Ramificaciones-en-Git-Procedimientos-B%C3%A1sicos-para-Ramificar-y-Fusionar)\\n" +
                       "- [Flujo de trabajo con Git](https://www.atlassian.com/es/git/tutorials/comparing-workflows)\\n\\n" +
                       "Por favor, crea un nuevo Pull Request desde una rama que no sea `" + rama + "`.\\n\\n" +
