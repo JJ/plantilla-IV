@@ -48,7 +48,7 @@ jobs:
                 repo: context.repo.repo,
                 issue_number: prNumber,
                 body: "🍋💥❌ **Pull Request cerrado automáticamente**\\n\\n" +
-                      "Hola 👋\\n\\n" +
+                      "😞 Lo sentimos mucho... \\n\\n" +
                       "Este Pull Request ha sido cerrado automáticamente porque has creado el PR desde tu rama `" + rama + "`.\\n\\n" +
                       "**¿Por qué es esto un problema?**\\n" +
                       "- Trabajar directamente en la rama `" + rama + "` puede causar conflictos al hacer merge\\n" +
