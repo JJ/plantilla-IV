@@ -47,8 +47,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: prNumber,
-                body: sorry("**Pull Request cerrado automáticamente**\\n\\n" +
-                      "Este Pull Request ha sido cerrado automáticamente porque has creado el PR desde tu rama `" + rama + "`.\\n\\n" +
+                body: sorry("😞 Lo sentimos mucho. Este Pull Request ha sido cerrado automáticamente porque has creado el PR desde tu rama `" + rama + "`.\\n\\n" +
                       "**¿Por qué es esto un problema?**\\n" +
                       "- Trabajar directamente en la rama `" + rama + "` puede causar conflictos al hacer merge\\n" +
                       "- Es una mala práctica de Git que puede complicar tu flujo de trabajo\\n" +
