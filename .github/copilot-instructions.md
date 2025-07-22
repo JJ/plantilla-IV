@@ -35,3 +35,9 @@ Use mainstream best practices for Perl, Raku and any Javascript code.
 
 Errors and warnings should be issed in a very visible way, over all from
 GithubActions.
+
+Any error could refer, if needed, to the instructions for submission, which are
+in https://jj.github.io/IV, over all in the [first project
+milestone](https://jj.github.io/IV/documentos/proyecto/0.Repositorio). Students
+are Spanish, or should speak Spanish, and have a good working knowledge of git,
+although it's not bad if it's freshened up.
