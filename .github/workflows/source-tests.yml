@@ -24,7 +24,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Descarga fuente
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Comprueba versión
         env:
           THIS_VERSION: ${{ steps.pr_info.outputs.version }}
@@ -110,7 +110,7 @@ jobs:
       version: ${{ needs.ops-on-pr.outputs.version }}
     steps:
       - name: Descarga fuente
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ${{env.checkout_repo}}
           ref: ${{env.rama}}
@@ -141,7 +141,7 @@ jobs:
       rama: ${{ needs.ops-on-pr.outputs.rama }}
     steps:
       - name: Descarga fuente
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Comprueba hitos desde el 1
         uses: actions/github-script@v7
@@ -301,7 +301,7 @@ jobs:
       objetivo: ${{ needs.ops-on-pr.outputs.objetivo }}
     steps:
       - name: Fuentes de este repo (para JSON)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - uses: awalsh128/cache-apt-pkgs-action@latest
         with:
           packages: liblwp-protocol-https-perl
