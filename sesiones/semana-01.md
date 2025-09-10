@@ -133,7 +133,7 @@ proyecto, entendido qué se espera del estudiante en la asignatura.
 ### Sesión conjunta (día  de septiembre)
 
 Comenzaremos con el hackatón. La **asistencia al hackatón** es obligatoria
-durante las primeras 6 semanas de clase.
+durante las primeras 8 semanas de clase.
 
   * Se trabajará en equipo en un proyecto a elegir entre
   [este](https://github.com/danibarranqueroo/TransporteEquitativo) y
