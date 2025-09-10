@@ -31,7 +31,7 @@ jobs:
           OBJETIVO: ${{ steps.pr_info.outputs.objetivo }}
         run: scripts/check-version
       - name: Comprueba que el PR no viene de la rama main
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
@@ -79,7 +79,7 @@ jobs:
               console.log( all_good("La rama '" + rama + "' es apropiada para el PR"))
             }
       - name: Comprueba que el usuario no ha abierto ningún otro PR
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
 
@@ -144,7 +144,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Comprueba hitos desde el 1
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         if: ${{ env.objetivo >= 1 }}
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -229,7 +229,7 @@ jobs:
             }
 
       - name: Comprueba que el PR está asignado a un milestone
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         if: ${{env.objetivo >= 2}}
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -244,7 +244,7 @@ jobs:
 
       - name: Comprueba el estado de CI
         if: ${{env.objetivo >= 6 }}
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
