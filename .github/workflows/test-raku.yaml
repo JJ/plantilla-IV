@@ -5,7 +5,6 @@ on:
       - "**/*.raku"
       - "**/*.rakumod"
       - t/*.rakutest
-      - "data/*"
       - .github/workflows/test-raku.yaml
 
 jobs:
