@@ -22,17 +22,14 @@ method new(Str $file = "{ PROYECTOS }usuarios.md") {
 
     for glob("{ PROYECTOS }objetivo-*.md").sort: { $^a cmp $^b } -> $f {
         my ($objetivo) := $f ~~ /(\d+)/;
-        say "Procesando objetivo $objetivo";
         my $contenido = $f.IO.slurp();
         my %estado-objetivos =
                 estado-objetivos( @student-list, $contenido, $objetivo );
-        say %estado-objetivos;
         @objetivos[$objetivo] = set();
         @entregas[$objetivo] = set();
-        say @student-list;
         for @student-list -> $usuario {
             my $estado-objetivo = %estado-objetivos{$usuario};
-            say "$usuario: $estado-objetivo";
+            next unless $estado-objetivo.defined;
             if $estado-objetivo<estado> == CUMPLIDO  {
                 %students{$usuario}<objetivos> ∪= +$objetivo;
                 @objetivos[$objetivo] ∪= $usuario;
