@@ -30,7 +30,7 @@ jobs:
           THIS_VERSION: ${{ steps.pr_info.outputs.version }}
           OBJETIVO: ${{ steps.pr_info.outputs.objetivo }}
         run: scripts/check-version
-      - name: Comprueba que el PR no viene de la rama main
+      - name: Comprueba que el PR no viene de la rama main del estudiante
         uses: actions/github-script@v8
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -78,7 +78,7 @@ jobs:
             } else {
               console.log( all_good("La rama '" + rama + "' es apropiada para el PR"))
             }
-      - name: Comprueba que el usuario no ha abierto ningún otro PR
+      - name: Comprueba que el usuario no ha abierto ningún otro PR en este repo
         uses: actions/github-script@v8
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -86,9 +86,9 @@ jobs:
           script: |
             const {all_good, sorry } = require("./lib/mensajes.js")
             const user = "${{ steps.pr_info.outputs.user }}"
-            const repo = "${{ github.event.repository.name }}"
+            const repo = "${{ github.event.repository.name }}" // válido para la plantilla también
             console.warn( "» Buscando PRs abiertos por el usuario 🔥" + user )
-            const prs = await github.rest.pulls.list( { owner: user, repo: repo, state: 'open' } )
+            const prs = await github.rest.pulls.list( { owner: 'JJ', repo: repo, state: 'open' } )
             const prs_by_user = prs.data.filter( pr => pr.user.login === user )
             if ( prs_by_user.length > 1 ) {
               core.setFailed( sorry("El usuario " + user + " tiene más de un PR abierto") )
@@ -114,7 +114,7 @@ jobs:
         with:
           repository: ${{env.checkout_repo}}
           ref: ${{env.rama}}
-      - name: Tests sobre fuentes
+      - name: Tests sobre fuentes del repo del estudiante
         id: source-tests
         with:
           fase: ${{env.objetivo}}
