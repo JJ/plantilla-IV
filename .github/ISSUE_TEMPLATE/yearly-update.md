@@ -9,7 +9,7 @@ about: "Actualización anual del repositorio"
    - [ ] JJ/github-pr-contains-action
    - [ ] JJ/grading-pr-info-gh-action
    - [ ] JJ/grading-source-tests-gh-action
-   
+
 2. [ ] Actualización de actions locales
 3. [ ] Actualización de bibliotecas locales
    - [ ] Node/JS
