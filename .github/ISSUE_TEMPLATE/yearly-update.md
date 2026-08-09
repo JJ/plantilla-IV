@@ -1,6 +1,6 @@
 ---
-name:yearly-update
-about:"Actualización anual del repositorio"
+name: yearly-update
+about: "Actualización anual del repositorio"
 ---
 
 # Lista de comprobación anual para creación del repo
