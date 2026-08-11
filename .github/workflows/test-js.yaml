@@ -6,6 +6,8 @@ on:
       - "**/*.*js"
       - test/**
       - .github/workflows/test-js.yaml
+      - package.json
+      - package-lock.json
 
 jobs:
   test:
