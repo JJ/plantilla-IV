@@ -1,6 +1,6 @@
 const { test, mock } = require('node:test')
 const assert = require('node:assert/strict')
-const checkRama = require('./check-rama.js')
+const checkRama = require('../lib/check-rama.js')
 
 function makeDeps() {
   return {
