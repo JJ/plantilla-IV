@@ -2,7 +2,7 @@
 
 **Repository**: `plantilla-IV`
 **Owner**: JJ (https://github.com/JJ/plantilla-IV)
-**Description**: Repository for the "Infraestructura Virtual" class (ETSIIT-UGR). Contains Raku scripts, data, teaching material, exercises, and project templates. The main business logic is in the Github actions.
+**Description**: Repository for the "Infraestructura Virtual" class (ETSIIT-UGR). Contains Raku scripts, data, teaching material, exercises, and project templates. The main business logic is in the Github actions, all other modules are invoked from these Github Actions.
 
 ## Language & Runtime
 - Primary language: **Raku** (Perl 6) – version 6.d as specified in `META6.json`.
@@ -13,13 +13,13 @@
   - `JSON::Fast`
 
 ## Project Structure
-- `lib/` – Raku modules (`.rakumod`).
+- `lib/` – Raku *and* JavaScript modules (`.rakumod`).
 - `scripts/` – Helper scripts for analysis.
 - `data/` – Datasets used in examples and exercises.
 - `tests/` – Test suite (run with `prove -l t/`).
 - `README.md` – High‑level overview and usage instructions.
 - `META6.json` – Package metadata for Raku, dependencies, and provides mapping.
-- `.github/workflow` - Main entrance into the business logic, center for all examination of the students
+- `.github/workflows` - Main entrance into the business logic, center for all examination of the students
 
 These directories do not contain any kind of business logic
 
