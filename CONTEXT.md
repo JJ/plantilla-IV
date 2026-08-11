@@ -19,13 +19,17 @@
 - `tests/` – Test suite (run with `prove -l t/`).
 - `README.md` – High‑level overview and usage instructions.
 - `META6.json` – Package metadata for Raku, dependencies, and provides mapping.
-- `.github/workflows` - Main entrance into the business logic, center for all examination of the students
+- `.github/workflows` – Core entry point for business logic, runs checks and analytics.
+- `sesiones/` – Session notebooks and lecture material (non‑business logic).
+- `proyectos/` – Template projects and assignment specifications (non‑business logic).
+- `errores/` – Common pitfalls and error explanations (non‑business logic).
 
-These directories do not contain any kind of business logic
-
-- `sesiones/` – Session notebooks and lecture material.
-- `proyectos/` – Template projects and assignment specifications.
-- `errores/` – Common pitfalls and error explanations.
+## Coding Standards
+- Follow mainstream best practices for Raku, Perl, and any JavaScript code.
+- Errors and warnings should be highly visible in GitHub Actions output.
+- Use clear, descriptive naming and modular design.
+- Keep scripts small, well‑documented, and idempotent.
+- Tests must cover all public modules and scripts.
 
 ## Building / Running
 ```bash
