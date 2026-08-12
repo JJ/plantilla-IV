@@ -4,7 +4,7 @@ on:
     paths:
       - "**/*.js"
       - "**/*.*js"
-      - test/**
+      - "test/**"
       - .github/workflows/test-js.yaml
       - package.json
       - package-lock.json
