@@ -33,7 +33,7 @@ if @objetivos-cumplidos[0].elems > 0 {
     ok($estudiante ∈ $stats.hecha-entrega($max-objetivo), "Entregas hechas");
     ok($stats.bajas-objetivos(0), "Devuelve bajas objetivos");
 
- #   ok($stats.bajas-totales(0), "Devuelve bajas totales");
+    ok($stats.bajas-totales(0), "Devuelve bajas totales");
     cmp-ok($stats.objetivos.elems, ">=", 0, "Objetivos hasta ahora");
     cmp-ok($stats.estudiantes.elems, ">=", 1, "Estudiantes suficientes");
 
