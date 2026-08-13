@@ -18,7 +18,7 @@ for @objetivos -> $objetivo {
     my $content = "{ PROYECTOS }objetivo-$objetivo.md".IO.slurp;
     my @versiones = $content.split("\n").grep(/"|"\s+ "v"/);
     my $entregas = $stats.hecha-entrega($objetivo) ∪ $stats.cumple-objetivo($objetivo);
-    cmp-ok($entregas.elems, ">=", @versiones.elems,
+    cmp-ok($entregas.elems, "<=", @versiones.elems,
         "Número de versiones no es igual que todas las entregas");
 }
 
