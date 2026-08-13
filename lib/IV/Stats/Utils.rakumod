@@ -2,7 +2,7 @@ unit module IV::Stats::Utils;
 
 use IO::Glob;
 
-constant PROYECTOS is export = "proyectos/";
+constant PROYECTOS is export = (%*ENV<IV_PROYECTOS> // "proyectos/");
 constant ASIGNACIONES is export = "{ PROYECTOS }asignaciones-objetivo-2.md";
 
 sub lista-estudiantes(Str $file = "{ PROYECTOS }usuarios.md") is export {

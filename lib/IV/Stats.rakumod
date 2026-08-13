@@ -41,11 +41,11 @@ method new(Str $file = "{ PROYECTOS }usuarios.md") {
         }
     }
     for %students.values -> %student {
-    %student<entrega> = %student<entrega> // 0;
-    if %student<entrega> < %student<objectivos> {
-        %student<entrega> = %student<objectivos>;
+        %student<entrega> = %student<entrega> // 0;
+        if %student<entrega> < %student<objetivos>  {
+            %student<entrega> = %student<objetivos>;
+        }
     }
-}
 self.bless(:@student-list, :%students, :@objetivos, :@entregas, :%versiones);
 }
 
