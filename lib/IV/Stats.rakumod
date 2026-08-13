@@ -46,7 +46,7 @@ method new(Str $file = "{ PROYECTOS }usuarios.md") {
             %student<entrega> = %student<objetivos>;
         }
     }
-self.bless(:@student-list, :%students, :@objetivos, :@entregas, :%versiones);
+    self.bless(:@student-list, :%students, :@objetivos, :@entregas, :%versiones);
 }
 
 submethod BUILD(:@!student-list, :%!students, :@!objetivos, :@!entregas, :%!versiones) {}

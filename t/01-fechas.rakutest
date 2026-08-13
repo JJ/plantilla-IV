@@ -1,5 +1,12 @@
 #!/usr/bin/env raku
 
+# Use fixtures when real production data is not present
+BEGIN {
+    unless "proyectos/usuarios.md".IO.s > 100 {
+        %*ENV<IV_PROYECTOS> = "t/fixtures/proyectos/";
+    }
+}
+
 use Test;
 use IV::Stats;
 use IV::Stats::Fechas;

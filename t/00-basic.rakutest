@@ -27,7 +27,8 @@ if @objetivos-cumplidos[0].elems > 0 {
     cmp-ok($stats.entregas-de($estudiante),
             ">=", $max-objetivo,
             "Entregas hechas");
-    ok($estudiante ∈ $stats.cumple-objetivo($max-objetivo - 1),
+    my $objetivo-previo = $max-objetivo > 0 ?? $max-objetivo - 1 !! $max-objetivo;
+    ok($estudiante ∈ $stats.cumple-objetivo($objetivo-previo),
     "Conjuntos creados");
     ok($estudiante ∈ $stats.hecha-entrega($max-objetivo), "Entregas hechas");
     ok($stats.bajas-objetivos(0), "Devuelve bajas objetivos");
