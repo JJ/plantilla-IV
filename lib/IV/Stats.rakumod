@@ -40,7 +40,13 @@ method new(Str $file = "{ PROYECTOS }usuarios.md") {
             %versiones{$usuario} = $estado-objetivo<version>;
         }
     }
-    self.bless(:@student-list, :%students, :@objetivos, :@entregas, :%versiones);
+    for %students.values -> %student {
+    %student<entrega> = %student<entrega> // 0;
+    if %student<entrega> < %student<objectivos> {
+        %student<entrega> = %student<objectivos>;
+    }
+}
+self.bless(:@student-list, :%students, :@objetivos, :@entregas, :%versiones);
 }
 
 submethod BUILD(:@!student-list, :%!students, :@!objetivos, :@!entregas, :%!versiones) {}
@@ -82,7 +88,7 @@ method versiones() {
 }
 
 method objetivos-cumplidos() {
-    return @!objetivos.map(*.keys.sort({ $^a.lc cmp $^b.lc }));
+    return @!objetivos.map(*.keys.sort({ $^a.lc cmp $^b.lc })).grep(*.elems > 0);
 }
 
 method percentiles() {
@@ -98,7 +104,7 @@ method percentiles() {
 
 method notas(--> Seq) {
     return gather for @!student-list -> $u {
-        take self.nota-de($u) * 7;
+        take self.nota-de($u) * 6.5 ~ " · " ~ self.nota-de($u) * 7;
     }
 }
 

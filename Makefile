@@ -30,3 +30,9 @@ fechas:
 
 asignaciones:
 	raku -Ilib scripts/check-asignaciones.raku
+
+install:
+	 zef install --deps-only .
+
+raku-test:
+	 zef --debug test .
