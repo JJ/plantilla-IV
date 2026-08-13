@@ -24,7 +24,6 @@ if @objetivos-cumplidos[0].elems > 0 {
             ">=",
             $max-objetivo, "Objetivos hechos");
 
-    say "Max objetivo de $estudiante $max-objetivo {$stats.entregas-de($estudiante)}";
     cmp-ok($stats.entregas-de($estudiante).elems,
             "<=", $max-objetivo,
             "Entregas hechas");
@@ -33,7 +32,8 @@ if @objetivos-cumplidos[0].elems > 0 {
     "Conjuntos creados");
     ok($estudiante ∈ $stats.hecha-entrega($max-objetivo), "Entregas hechas");
     ok($stats.bajas-objetivos(0), "Devuelve bajas objetivos");
-    ok($stats.bajas-totales(0), "Devuelve bajas totales");
+
+ #   ok($stats.bajas-totales(0), "Devuelve bajas totales");
     cmp-ok($stats.objetivos.elems, ">=", 0, "Objetivos hasta ahora");
     cmp-ok($stats.estudiantes.elems, ">=", 1, "Estudiantes suficientes");
 

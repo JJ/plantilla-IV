@@ -72,6 +72,7 @@ method bajas-objetivos(UInt $objetivo) {
 }
 
 method bajas-totales(UInt $objetivo) {
+    say "{@!objetivos[$objetivo]} ⊖ {@!entregas[$objetivo + 1]}";
     return @!objetivos[$objetivo] ⊖ @!entregas[$objetivo + 1];
 }
 
