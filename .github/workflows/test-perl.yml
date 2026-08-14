@@ -1,0 +1,31 @@
+name: Perl tests
+
+on:
+  push:
+    paths:
+      - "**/*.pl"
+      - "**/*.pm"
+      - t/*.t
+      - .github/workflows/test-perl.yaml
+
+jobs:
+  build-in-container:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - '5.32'
+          - '5.34'
+          - '5.30'
+
+    name: Test perl v${{ matrix.version }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Regular tests with ${{ matrix.version }}
+        env:
+          PERL_VERSION: ${{ matrix.version }}
+        run: prove --exec "perl -Mv$PERL_VERSION" -lv t/
+

@@ -80,6 +80,31 @@ actually broken.
 
 ---
 
+## Perl side (`src/`, `lib/IV/*.pm`, `t/*.t`)
+
+A handful of GitHub Actions entry points are plain Perl, not Raku:
+
+* Dependencies for this Perl code are declared in `cpanfile` at the repo
+  root, **not** in `META6.json` (that file is Raku-only) and not in
+  `package.json`/`node_modules` (there are no Node deps here). Assume
+  whatever is listed in `cpanfile` is installed — do not spend a step
+  verifying `perl -M...` or `which <tool>` before using it.
+* `src/*.pl` are the editable sources. They are never run directly in CI —
+  `make versiones` / `make revisores` (see `Makefile`) run `fatpack pack`
+  on them to produce single self-contained files under `scripts/`
+  (`scripts/check-version`, `scripts/random-reviewer`), which is what the
+  GitHub Actions workflows actually invoke. `fatlib/` holds the pre-built
+  CPAN dependency tree used by that packing step.
+* Shared/testable logic for these scripts lives in `lib/IV/*.pm`
+  (`IV::CheckVersion`, `IV::RandomReviewer`), pulled in via
+  `use FindBin; use lib "$FindBin::Bin/../lib";` so it resolves correctly
+  both when run standalone and when traced by `fatpack pack`.
+* Tests for this code are plain `Test::More` scripts under `t/*.t`, run via
+  `prove -l t/` — as opposed to the Raku suite's `t/*.rakutest` files in
+  the same directory.
+
+---
+
 ## References & Documentation Policy
 
 * **Reference Verification:** Always verify any bibliographical or external references provided in responses or documentation edits.

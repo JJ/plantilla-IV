@@ -5,3 +5,7 @@ requires "JSON";
 requires "GitHub::Actions";
 requires "LWP::UserAgent";
 requires "App::FatPacker";
+
+on 'test' => sub {
+  requires "Test::More";
+};

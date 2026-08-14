@@ -36,3 +36,6 @@ install:
 
 raku-test:
 	 zef --debug test .
+
+perl-test:
+	prove -l t/
