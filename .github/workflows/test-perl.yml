@@ -5,7 +5,7 @@ on:
     paths:
       - "**/*.pl"
       - "**/*.pm"
-      - t/*.t
+      - perl-tt/*.t
       - .github/workflows/test-perl.yml
 
 jobs:
