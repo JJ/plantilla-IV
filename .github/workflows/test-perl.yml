@@ -6,7 +6,7 @@ on:
       - "**/*.pl"
       - "**/*.pm"
       - t/*.t
-      - .github/workflows/test-perl.yaml
+      - .github/workflows/test-perl.yml
 
 jobs:
   build-in-container:
