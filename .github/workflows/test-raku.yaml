@@ -2,7 +2,6 @@ name: "Testea código Raku"
 on:
   push:
     paths:
-      - "**/*.raku"
       - "**/*.rakumod"
       - t/*.rakutest
       - .github/workflows/test-raku.yaml
