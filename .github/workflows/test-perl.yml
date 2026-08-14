@@ -26,7 +26,7 @@ jobs:
       - name: install cpanm and multiple modules
         uses: perl-actions/install-with-cpanm@v2
         with:
-          cpanfile: cpanfile
+          cpanfile: test.cpanfile
           sudo: false
       - name: Regular tests with ${{ matrix.version }}
         env:
