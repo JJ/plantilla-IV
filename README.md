@@ -1,5 +1,5 @@
 # Repositorio de clase de Infraestructura Virtual de la [ETSIIT-UGR](https://etsiit.ugr.es) [![Test in a Raku container](https://github.com/JJ/plantilla-IV/actions/workflows/test-raku.yaml/badge.svg)](https://github.com/JJ/plantilla-IV/actions/workflows/test-raku.yaml) [![Perl tests](https://github.com/JJ/plantilla-IV/actions/workflows/test-perl.yml/badge.svg)](https://github.com/JJ/plantilla-IV/actions/workflows/test-perl.yml)
-## Versión 25-26
+## Versión 26-27
 
 Repositorio para el material específico de cada clase, planificación y ejercicios.
 
