@@ -1,4 +1,4 @@
-requires "IO::Socket::SSL", "> 2.099";
+requires "IO::Socket::SSL", ">= 2.099";
 requires "File::Slurper";
 requires "Git";
 requires "JSON";
