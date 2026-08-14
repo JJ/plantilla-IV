@@ -5418,6 +5418,94 @@ $fatpacked{"HTTP/Status.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'HTT
   the C<:constants> tag instead of relying on this.
 HTTP_STATUS
 
+$fatpacked{"IV/CheckVersion.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'IV_CHECKVERSION';
+  package IV::CheckVersion;
+  
+  use strict;
+  use warnings;
+  use v5.14;
+  
+  use Exporter 'import';
+  our @EXPORT_OK = qw(valida_version);
+  
+  sub valida_version {
+    my ( $this_version, $objetivo ) = @_;
+    my $correctVersion = "v0.$objetivo";
+  
+    if ( index( $this_version, $correctVersion ) == -1 ) {
+      return ( 0, "La versión $this_version es incorrecta: debería comenzar con $correctVersion" );
+    }
+  
+    if ( $this_version eq 'v0.0.0' ) {
+      return ( 0, "Una versión 0.0.0 es incorrecta; la primera versión posible es la 0.0.1" );
+    }
+  
+    return ( 1, "La versión $this_version es adecuada para este objetivo" );
+  }
+  
+  1;
+IV_CHECKVERSION
+
+$fatpacked{"IV/RandomReviewer.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'IV_RANDOMREVIEWER';
+  package IV::RandomReviewer;
+  
+  use strict;
+  use warnings;
+  use v5.14;
+  
+  use File::Slurper 'read_text';
+  use Exporter 'import';
+  our @EXPORT_OK = qw(
+    carga_entregas
+    procesa_entregas
+    elige_revisores
+    construye_comentario
+    MAXREVIEWERS
+  );
+  
+  use constant MAXREVIEWERS => 5;
+  
+  sub carga_entregas {
+    my $filename = shift;
+  
+    if ( -e $filename ) {
+      return read_text( $filename );
+    } elsif ( -e "../$filename" ) {
+      return read_text( "../$filename" );
+    } else {
+      die "No encuentro el fichero de entregas";
+    }
+  }
+  
+  sub procesa_entregas {
+    my ( $entregas_csv, $user, $objetivo ) = @_;
+    my @lines = split( "\n", $entregas_csv );
+    my @this_objetivo = grep /^$objetivo;/, @lines;
+    my @users = map { my @columnas = split(/;\s*/); $columnas[1] } @this_objetivo;
+    return grep { $_ ne $user } @users;
+  }
+  
+  sub elige_revisores {
+    my @candidatos = @_;
+    my $num_reviewers = scalar(@candidatos) < MAXREVIEWERS ? scalar(@candidatos) : MAXREVIEWERS;
+  
+    my @reviewers;
+    for ( my $i = 0; $i < $num_reviewers; $i++ ) {
+      my $this_reviewer = splice( @candidatos, int( rand( $#candidatos ) ), 1 );
+      push( @reviewers, $this_reviewer );
+    }
+    return @reviewers;
+  }
+  
+  sub construye_comentario {
+    my ( $user, $repo, $pull_number, @reviewers ) = @_;
+    return "[🔗](https://github.com/$user/$repo/pull/$pull_number) ⛹ Revisores → "
+      . join( " :heavy_plus_sign: ", map { "\@$_" } @reviewers );
+  }
+  
+  1;
+IV_RANDOMREVIEWER
+
 $fatpacked{"JSON.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'JSON';
   package JSON;
   
@@ -26037,36 +26125,17 @@ use warnings;
 use v5.14;
 
 use JSON;
-use File::Slurper 'read_text';
 use GitHub::Actions;
 use LWP::UserAgent;
 
-
-# subs
-sub procesa_entregas( $ $ $ ) {
-  my $entregas_csv = shift;
-  my $user = shift;
-  my $objetivo = shift;
-  my @lines = split("\n",$entregas_csv);
-  my @this_objetivo = grep /^$objetivo;/, @lines;
-  my @users = map { my @columnas = split(/;\s*/); $columnas[1] } @this_objetivo;
-  return grep $_ ne $user, @users;
-}
+use FindBin;
+use lib "$FindBin::Bin/../lib";
+use IV::RandomReviewer qw(carga_entregas procesa_entregas elige_revisores construye_comentario);
 
 #-------------------
 
-use constant MAXREVIEWERS => 5;
-
-my $filename = "data/fechas-entrega.csv";
-my $entregas_csv;
-
-if ( -e $filename ) {
-  $entregas_csv = read_text( $filename );
-} elsif ( -e "../$filename" ) {
-  $entregas_csv = read_text( "../$filename" );
-} else {
-  die "No encuentro el fichero de entregas";
-}
+my $filename     = "data/fechas-entrega.csv";
+my $entregas_csv = carga_entregas( $filename );
 
 my $este_objetivo = $ENV{'objetivo'} || 0;
 my $user          = $ENV{'user'};
@@ -26082,17 +26151,11 @@ if ( !@these_students ) {
   exit(0);
 }
 
-my $num_reviewers = scalar(@these_students) < MAXREVIEWERS ? scalar(@these_students) : MAXREVIEWERS;
+my @reviewers = elige_revisores( @these_students );
 
-my @reviewers;
-for ( my $i = 0; $i < $num_reviewers; $i ++ ) {
-  my $this_reviewer = splice( @these_students, int(rand( $#these_students ) ), 1 );
-  push( @reviewers, "\@".$this_reviewer );
-}
-
-my $data = "[🔗](https://github.com/$user/$repo/pull/$pull_number) ⛹ Revisores → ". join(" :heavy_plus_sign: ", @reviewers);
-my $post_data = sprintf('{"body":"%s"}', $data);
-my $url = sprintf('https://api.github.com/repos/JJ/IV-/issues/%s/comments', $pr_number);
+my $data      = construye_comentario( $user, $repo, $pull_number, @reviewers );
+my $post_data = sprintf( '{"body":"%s"}', $data );
+my $url       = sprintf( 'https://api.github.com/repos/JJ/IV-/issues/%s/comments', $pr_number );
 
 warning($data);
 
@@ -26108,4 +26171,3 @@ my $response;
 eval { $response = $ua->request($request)->as_string() } || set_failed "No puedo poner comentario: $@";
 
 warning($response);
-
