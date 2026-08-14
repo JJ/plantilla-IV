@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Comprobaciones IV
-      uses: JJ/github-pr-contains-action@releases/v8
+      uses: JJ/github-pr-contains-action@releases/v14
       with:
         github-token: ${{github.token}}
         bodyContains: "] NOCERRAR"
