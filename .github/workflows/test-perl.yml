@@ -7,6 +7,7 @@ on:
       - "**/*.pm"
       - perl-tt/*.t
       - .github/workflows/test-perl.yml
+      - test.cpanfile
 
 jobs:
   build-in-container:
