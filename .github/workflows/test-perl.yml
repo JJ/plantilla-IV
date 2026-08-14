@@ -33,5 +33,5 @@ jobs:
         env:
           PERL_VERSION: ${{ matrix.version }}
         run: |
-          prove --exec "perl -Mv$PERL_VERSION" -lv perl-t/
+          eval "$(perl -Mlocal::lib)" && prove --exec "perl -Mv$PERL_VERSION" -lv perl-t/
 
