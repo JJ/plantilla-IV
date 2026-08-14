@@ -6,6 +6,7 @@ on:
     paths:
       - proyectos/objetivo*.md
       - lib/**
+      - scripts/*.raku
       - .github/workflows/genera-datos.yml
 
 jobs:
