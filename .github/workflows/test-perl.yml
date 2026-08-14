@@ -28,10 +28,9 @@ jobs:
         uses: perl-actions/install-with-cpanm@v2
         with:
           cpanfile: test.cpanfile
-          sudo: false
       - name: Regular tests with ${{ matrix.version }}
         env:
           PERL_VERSION: ${{ matrix.version }}
         run: |
-          eval "$(perl -Mlocal::lib)" && prove --exec "perl -Mv$PERL_VERSION" -lv perl-t/
+          prove --exec "perl -Mv$PERL_VERSION" -lv perl-t/
 
