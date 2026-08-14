@@ -33,6 +33,7 @@ asignaciones:
 
 install:
 	 zef install --deps-only .
+	cpanm --installdeps .
 
 raku-test:
 	 zef --debug test .
