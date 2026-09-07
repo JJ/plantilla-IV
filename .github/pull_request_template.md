@@ -7,6 +7,6 @@
 
 ## Lista de comprobación para hitos
 
-* [ ] GUION: He leído el guión del hito
-* [ ] PRE: Cumplo los prerrequisitos (he aprobado el hito anterior, por ejemplo)
+* [ ] GUION: He leído el guión del objetivo
+* [ ] PRE: Cumplo los prerrequisitos (pasar los tests del objetivo anterior)
 
