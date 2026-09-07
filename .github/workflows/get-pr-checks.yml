@@ -7,6 +7,20 @@ jobs:
   get-checks:
     runs-on: ubuntu-latest
     steps:
+      - name: Comprobar que el título del PR contiene el prefijo requerido
+        # Prefijo configurable mediante la variable REQUIRED_TITLE_PREFIX
+        env:
+          REQUIRED_TITLE_PREFIX: '[IV-'
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const required = process.env.REQUIRED_TITLE_PREFIX || '[IV-'
+            const title = (context.payload.pull_request && context.payload.pull_request.title) || ''
+            if (!title.includes(required)) {
+              core.setFailed(`⚠️ El título del PR debe contener «${required}» como se indica en el guión`)
+            }
+
       - name: Comprobaciones sobre el cuerpo del PR en este repositorio
         uses: actions/github-script@v9
         with:
