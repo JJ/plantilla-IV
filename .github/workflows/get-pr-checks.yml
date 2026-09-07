@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Comprobar que el título del PR contiene el prefijo requerido
+        id: check_title
         # Prefijo configurable mediante la variable REQUIRED_TITLE_PREFIX
         env:
           REQUIRED_TITLE_PREFIX: '[IV-'
@@ -18,26 +19,70 @@ jobs:
             const required = process.env.REQUIRED_TITLE_PREFIX || '[IV-'
             const title = (context.payload.pull_request && context.payload.pull_request.title) || ''
             if (!title.includes(required)) {
-              core.setFailed(`⚠️ El título del PR debe contener «${required}» como se indica en el guión`)
+              core.setOutput('status', 'ERROR')
+              core.setOutput('message', `faltó el prefijo ${required}`)
+              core.warning(`Título del PR: falta el prefijo ${required}`)
+            } else {
+              core.setOutput('status', 'OK')
+              core.setOutput('message', '')
             }
 
       - name: Comprobaciones sobre el cuerpo del PR en este repositorio
+        id: check_body
         uses: actions/github-script@v9
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const checklist = /\s*[-\*]\s+\[\s*([xX]?)\s*\]\s+([A-Z]*):?/gm
-            const body = context.payload.pull_request.body
+            const body = context.payload.pull_request.body || ''
             let match = checklist.exec(body)
-            let warned = false
+            let messages = []
             while (match != null) {
               let value = match[1] ? true : false
               if ( value === false ) {
-                  core.setFailed("⚠️ No has marcado " + match[2] + " ⚠")
-                  if ( !warned ) {
-                      core.warning("👉 Es importante que sigáis la lista de comprobación en cada entrega" )
-                      warned = true
-                  }
+                messages.push(`No has marcado ${match[2]}`)
               }
               match = checklist.exec(body)
             }
+            if (messages.length > 0) {
+              core.setOutput('status', 'ERROR')
+              core.setOutput('message', messages.join('; '))
+              core.warning('👉 Es importante que sigáis la lista de comprobación en cada entrega')
+            } else {
+              core.setOutput('status', 'OK')
+              core.setOutput('message', '')
+            }
+
+      - name: Resumen de comprobaciones
+        run: |
+          set -eo pipefail
+          TITLE_STATUS="${{ steps.check_title.outputs.status }}"
+          TITLE_MSG="${{ steps.check_title.outputs.message }}"
+          BODY_STATUS="${{ steps.check_body.outputs.status }}"
+          BODY_MSG="${{ steps.check_body.outputs.message }}"
+
+          echo "## Resumen de comprobaciones" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${TITLE_MSG}" != "" ]; then
+            echo "- Título: ${TITLE_STATUS} - ${TITLE_MSG}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- Título: ${TITLE_STATUS}" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ "${BODY_MSG}" != "" ]; then
+            echo "- Cuerpo: ${BODY_STATUS} - ${BODY_MSG}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- Cuerpo: ${BODY_STATUS}" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ "${TITLE_STATUS}" = "ERROR" ] || [ "${BODY_STATUS}" = "ERROR" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Se han encontrado errores. Consulta las instrucciones de entrega: https://jj.github.io/IV/documentos/proyecto/0.Repositorio#entrega-de-la-pr%C3%A1ctica" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Uno o más checks fallaron. Marcando el job como fallido." >&2
+            exit 1
+          else
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Todas las comprobaciones pasaron correctamente." >> $GITHUB_STEP_SUMMARY
+          fi
