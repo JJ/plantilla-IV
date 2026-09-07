@@ -54,35 +54,19 @@ jobs:
             }
 
       - name: Resumen de comprobaciones
-        run: |
-          set -eo pipefail
-          TITLE_STATUS="${{ steps.check_title.outputs.status }}"
-          TITLE_MSG="${{ steps.check_title.outputs.message }}"
-          BODY_STATUS="${{ steps.check_body.outputs.status }}"
-          BODY_MSG="${{ steps.check_body.outputs.message }}"
-
-          echo "## Resumen de comprobaciones" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          if [ "${TITLE_MSG}" != "" ]; then
-            echo "- Título: ${TITLE_STATUS} - ${TITLE_MSG}" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "- Título: ${TITLE_STATUS}" >> $GITHUB_STEP_SUMMARY
-          fi
-
-          if [ "${BODY_MSG}" != "" ]; then
-            echo "- Cuerpo: ${BODY_STATUS} - ${BODY_MSG}" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "- Cuerpo: ${BODY_STATUS}" >> $GITHUB_STEP_SUMMARY
-          fi
-
-          if [ "${TITLE_STATUS}" = "ERROR" ] || [ "${BODY_STATUS}" = "ERROR" ]; then
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "Se han encontrado errores. Consulta las instrucciones de entrega: https://jj.github.io/IV/documentos/proyecto/0.Repositorio#entrega-de-la-pr%C3%A1ctica" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "Uno o más checks fallaron. Marcando el job como fallido." >&2
-            exit 1
-          else
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "Todas las comprobaciones pasaron correctamente." >> $GITHUB_STEP_SUMMARY
-          fi
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const { generarResumen } = require('./lib/mensajes.js')
+            const tituloStatus = '${{ steps.check_title.outputs.status }}'
+            const tituloMsg = '${{ steps.check_title.outputs.message }}'
+            const bodyStatus = '${{ steps.check_body.outputs.status }}'
+            const bodyMsg = '${{ steps.check_body.outputs.message }}'
+            
+            const resumen = generarResumen(tituloStatus, tituloMsg, bodyStatus, bodyMsg)
+            await core.summary.addRaw(resumen).write()
+            
+            if (tituloStatus === 'ERROR' || bodyStatus === 'ERROR') {
+              core.setFailed('Uno o más checks fallaron.')
+            }
