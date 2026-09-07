@@ -65,10 +65,10 @@ jobs:
             const tituloMsg = '${{ steps.check_title.outputs.message }}'
             const bodyStatus = '${{ steps.check_body.outputs.status }}'
             const bodyMsg = '${{ steps.check_body.outputs.message }}'
-            
+
             const resumen = generarResumen(tituloStatus, tituloMsg, bodyStatus, bodyMsg)
             await core.summary.addRaw(resumen).write()
-            
+
             if (tituloStatus === 'ERROR' || bodyStatus === 'ERROR') {
               core.setFailed('Uno o más checks fallaron.')
             }
