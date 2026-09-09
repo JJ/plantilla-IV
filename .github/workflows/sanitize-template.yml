@@ -1,0 +1,88 @@
+name: Sanitise template
+
+on:
+  repository:
+    types: [created]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sanitise:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Run sanitization
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # 1) Remove common AI skills/agents/context files and directories (best-effort)
+          rm -rf .github/skills || true
+          rm -rf skills || true
+          rm -rf agents || true
+          rm -rf .copilot || true
+          rm -f AGENTS.md CONTEXT.md copilot-setup-steps.yml copilot-setup* || true
+
+          # Remove files whose names include 'skill' or 'copilot' (shallow, safe)
+          find . -maxdepth 3 -type f \( -iname "*skill*" -o -iname "*copilot*" -o -iname "*agents*" \) -not -path "./.git/*" -print0 | xargs -0 -r rm -f || true
+
+          # 2) Keep only markdown table headers in proyectos/*.md
+          if [ -d proyectos ]; then
+            for f in proyectos/*.md; do
+              [ -f "$f" ] || continue
+              awk '
+                BEGIN { in_table=0 }
+                /^ *\|/ {
+                  if (in_table==0) { print; getline; print; in_table=1 }
+                  next
+                }
+                { if (in_table) in_table=0; print }
+              ' "$f" > "$f.tmp" && mv "$f.tmp" "$f"
+            done
+          fi
+
+          # 3) Delete renovate.json if present
+          rm -f renovate.json || true
+
+          # 4) Empty CSVs in data/ keeping only header; convert JSON files to same structure with empty values
+          if [ -d data ]; then
+            # CSVs: keep first line only
+            find data -type f -name "*.csv" -print0 | while IFS= read -r -d '' csv; do
+              head -n 1 "$csv" > "$csv.tmp" || true
+              mv "$csv.tmp" "$csv"
+            done
+
+            # Ensure jq exists for JSON processing
+            if ! command -v jq >/dev/null 2>&1; then
+              apt-get update -qq
+              apt-get install -y -qq jq
+            fi
+
+            # JSONs: replace primitive values with null and arrays with [] while preserving keys (structure only)
+            find data -type f -name "*.json" -print0 | while IFS= read -r -d '' js; do
+              jq 'def e: if type=="object" then with_entries(.value |= e) elif type=="array" then [] else null end; e' "$js" > "$js.tmp" && mv "$js.tmp" "$js"
+            done
+          fi
+
+          # Commit and push changes (if any)
+          git config user.name "Sanitizer Bot"
+          git config user.email "sanitizer-bot@example.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Sanitise template: remove production-only AI skills/agents, trim proyectos tables, delete renovate.json, empty data files
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+            git push
+          else
+            echo "No changes to commit"
+          fi
+
+      - name: Done
+        run: echo "Sanitization step finished. If changes were made they were committed and pushed."
