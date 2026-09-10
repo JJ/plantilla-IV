@@ -19,7 +19,7 @@ rm -f AGENTS.md CONTEXT.md
             done
 
 # 3) Delete renovate.json if present
-rm -f renovate.json || true
+rm -f renovate.json scripts/limpia-tras-creacion.sh
 
 # 4) Empty CSVs in data/ keeping only header; convert JSON files to same structure with empty values
 
@@ -35,8 +35,8 @@ rm -f renovate.json || true
               apt-get install -y -qq jq
             fi
 
-            # JSONs: replace primitive values with null and arrays with [] while preserving keys (structure only)
+            # JSONs: empty them completely -> {} for objects, [] for arrays, null otherwise
             find data -type f -name "*.json" -print0 | while IFS= read -r -d '' js; do
-              jq 'def e: if type=="object" then with_entries(.value |= e) elif type=="array" then [] else null end; e' "$js" > "$js.tmp" && mv "$js.tmp" "$js"
+              jq 'if type=="object" then {} elif type=="array" then [] else null end' "$js" > "$js.tmp" && mv "$js.tmp" "$js"
             done
 
