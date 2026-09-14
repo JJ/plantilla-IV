@@ -17,6 +17,7 @@ jobs:
       pr_milestone: ${{steps.pr_info.outputs.pr_milestone}}
       pull_number: ${{steps.pr_info.outputs.pull_number}}
       version: ${{steps.pr_info.outputs.version}}
+      prev_version: ${{steps.pr_info.outputs.prev_version}}
     steps:
       - id: pr_info
         name: Comprobaciones básicas y extracción de información
@@ -27,6 +28,7 @@ jobs:
         uses: actions/checkout@v7
       - name: Comprueba versión
         env:
+          OLD_VERSION:  ${{ steps.pr_info.outputs.prev_version }}
           THIS_VERSION: ${{ steps.pr_info.outputs.version }}
           OBJETIVO: ${{ steps.pr_info.outputs.objetivo }}
         run: scripts/check-version
