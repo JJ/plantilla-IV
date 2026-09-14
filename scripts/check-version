@@ -493,6 +493,7 @@ use FindBin;
 use lib "$FindBin::Bin/../lib";
 
 use GitHub::Actions;
+use version;
 use IV::CheckVersion qw(valida_version);
 
 my ( $ok, $mensaje ) = valida_version( $ENV{'THIS_VERSION'}, $ENV{'OBJETIVO'} );
