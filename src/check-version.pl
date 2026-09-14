@@ -19,3 +19,10 @@ if ( !$ok ) {
   debug( $mensaje );
   add_to_job_summary( "# ✅ $ENV{'THIS_VERSION'}" );
 }
+
+if ( qv( $ENV{'THIS_VERSION'} ) > qv($ENV{'OLD_VERSION'} ) ) {
+  add_to_job_summary( "# ✅ Versión incrementada correctamente" );
+} else {
+  set_failed( "# ❌ $ENV{'OLD_VERSION'} no es menor que $ENV{'THIS_VERSION'}" );
+  add_to_job_summary( "# ❌ $ENV{'THIS_VERSION'} " );
+}
